@@ -131,9 +131,17 @@ const addDataToUserDb = async (req, res, next) => {
 };
 
 
-const certificateEarned = async (req,res,next) => {
+const certificateEarnedByUser = async (req,res,next) => {
   try{
-    res.status(200).json({status:"success"})
+
+    const response = {
+      status:"success",
+      data:{
+        data:req.user.certificateEarned
+      }
+    }
+
+    res.status(200).json(response)
   }catch(err)
   {
     return next(new ErrorClass(err.message, 400));
@@ -143,5 +151,5 @@ module.exports = {
   displayQuestions,
   showTypesOfQuestions,
   addDataToUserDb,
-  certificateEarned
+  certificateEarnedByUser,
 };
