@@ -641,4 +641,5 @@ module.exports = {
   allSearchJobFilterAvailable,
   unSaveJob,
   getAllSaveLaterJobsJobId,
+
 };

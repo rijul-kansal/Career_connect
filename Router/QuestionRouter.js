@@ -5,5 +5,6 @@ const router = express.Router();
 router.use(AuthController.protect);
 router.route('/:type').get(QuestionController.displayQuestions);
 router.route('/').get(QuestionController.showTypesOfQuestions);
+router.route('/allCertificateEarned').get(QuestionController.showTypesOfQuestions);
 router.route('/').post(QuestionController.addDataToUserDb);
 module.exports = router;

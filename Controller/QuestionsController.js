@@ -36,7 +36,7 @@ const displayQuestions = async (req, res, next) => {
     const sets = new Set();
     let finalData = [];
     let i = 0;
-    while (i < 10) {
+    while (i < 5) {
       const ele = Math.floor(Math.random() * len);
       if (!sets.has(ele)) {
         finalData.push(data[ele]);
@@ -129,8 +129,19 @@ const addDataToUserDb = async (req, res, next) => {
     return next(new ErrorClass(err.message, 400));
   }
 };
+
+
+const certificateEarned = async (req,res,next) => {
+  try{
+    res.status(200).json({status:"success"})
+  }catch(err)
+  {
+    return next(new ErrorClass(err.message, 400));
+  }
+};
 module.exports = {
   displayQuestions,
   showTypesOfQuestions,
   addDataToUserDb,
+  certificateEarned
 };
