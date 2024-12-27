@@ -1,7 +1,6 @@
 const UserModel = require('./../Model/UserModel');
 const ErrorClass = require('./../Utils/ErrorClass');
 const FormDataS3 = require('./FormDataS3')
-const compress= require('compress-pdf')
 // update user info
 const updateMe = async (req, res, next) => {
   try {
@@ -103,8 +102,6 @@ const updateImageOrResume = async(req,res,next)=>{
        return next(new ErrorClass('Please pass file and type',400))
     }
     const fileName = req.user._id+type
-    console.log(file)
-    file.buffer = await compress.compress(file.buffer)
     const download = await FormDataS3.savingFileToS3(file,fileName)
     console.log(download.download_url)
     if(type === "Resume")
