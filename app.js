@@ -94,6 +94,7 @@ const users = new Map();
 io.on('connection', (socket) => {
   console.log('a user connected');
   const { userId } = socket.handshake.query;
+  console.log(userId,socket.id)
   // storing socket id to array
 
   users.set(userId, socket.id);

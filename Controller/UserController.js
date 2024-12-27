@@ -1,8 +1,9 @@
 const UserModel = require('./../Model/UserModel');
 const ErrorClass = require('./../Utils/ErrorClass');
+const FormDataS3 = require('./FormDataS3')
+const compress= require('compress-pdf')
 // update user info
 const updateMe = async (req, res, next) => {
-  // trying  to update values if present else take previous value
   try {
     req.user.name = req.body.name || req.user.name;
     req.user.image = req.body.image || req.user.image;
@@ -92,8 +93,47 @@ const deleteMe = async (req, res, next) => {
     return next(new ErrorClass(err.message, 400));
   }
 };
+
+const updateImageOrResume = async(req,res,next)=>{
+  try{
+    let file = req.files[0]
+    const type = req.body.type
+    if(!type || !file)
+    {
+       return next(new ErrorClass('Please pass file and type',400))
+    }
+    const fileName = req.user._id+type
+    console.log(file)
+    file.buffer = await compress.compress(file.buffer)
+    const download = await FormDataS3.savingFileToS3(file,fileName)
+    console.log(download.download_url)
+    if(type === "Resume")
+    {
+      req.user.resumeLink = download.download_url
+    }
+    else if(type === 'Image')
+    {
+      req.user.image=download.download_url
+    }
+    console.log(req.user)
+    await req.user.save()
+
+    const response = {
+      status:"success",
+      data:req.user
+    }
+    res.status(200).json(response)
+    }catch(error)
+    {
+     return next(new ErrorClass(error.message,400))
+    }
+}
 module.exports = {
   updateMe,
   getMe,
   deleteMe,
+  updateImageOrResume
 };
+
+
+
