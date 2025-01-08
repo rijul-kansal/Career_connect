@@ -29,6 +29,7 @@ const AuthRouter = require('./Router/AuthRouter');
 const UserRouter = require('./Router/UserRouter');
 const JobRouter = require('./Router/JobRouter');
 const ChatRouter = require('./Router/ChatRouter');
+const ExtRouter = require('./Router/ExtRouter');
 const QuestionsRouter = require('./Router/QuestionRouter');
 const ChatController = require('./Controller/ChatController');
 
@@ -78,6 +79,7 @@ app.use('/v1/user', UserRouter);
 app.use('/v1/jobs', JobRouter);
 app.use('/v1/chats', ChatRouter);
 app.use('/v1/questions', QuestionsRouter);
+app.use('/v1/external', ExtRouter);
 
 // if no router matches then return error
 app.all('*', (req, res, next) => {
