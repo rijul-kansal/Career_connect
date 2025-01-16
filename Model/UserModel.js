@@ -132,6 +132,23 @@ const certificateEarned = new mongoose.Schema({
   },
 });
 
+const linksSchema = new mongoose.Schema({
+  codeChef:{
+    type:String
+  },
+  codeForces:{
+    type:String
+  },
+  leetCode:{
+    type:String
+  },
+  website:{
+    type:String
+  },
+  github:{
+    type:String
+  },
+})
 const userSchema = new mongoose.Schema({
   typeOfUser: {
     type: String,
@@ -215,9 +232,7 @@ const userSchema = new mongoose.Schema({
   },
   achievements: [achievementsSchema],
   resumeLink: String,
-  githubLink: String,
-  portfolioLink: String,
-  codingProfileLink: [String],
+  links: linksSchema,
   lastUpdated: {
     type: Number,
     default: Date.now,

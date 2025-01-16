@@ -21,10 +21,7 @@ const updateMe = async (req, res, next) => {
     req.user.summary = req.body.summary || req.user.summary;
     req.user.achievements = req.body.achievements || req.user.achievements;
     req.user.resumeLink = req.body.resumeLink || req.user.resumeLink;
-    req.user.githubLink = req.body.githubLink || req.user.githubLink;
-    req.user.portfolioLink = req.body.portfolioLink || req.user.portfolioLink;
-    req.user.codingProfileLink =
-      req.body.codingProfileLink || req.user.codingProfileLink;
+    req.user.links = req.body.links || req.user.links;
     req.user.preferredJob = req.body.preferredJob || req.user.preferredJob;
     req.user.typeOfUser = req.body.typeOfUser || req.user.typeOfUser;
     req.user.fcmToken = req.body.fcmToken || req.user.fcmToken;
