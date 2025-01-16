@@ -148,6 +148,9 @@ const linksSchema = new mongoose.Schema({
   github:{
     type:String
   },
+  linkedin :{
+    type:String
+  }
 })
 const userSchema = new mongoose.Schema({
   typeOfUser: {
