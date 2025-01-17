@@ -22,6 +22,7 @@ const createUser = async (req, res, next) => {
       mobileNumber,
       OTPVerification: otp,
       OTPValidTill: Date.now() + 5 * 60 * 1000,
+      links:null
     });
     // these parameter not required
     result.password = undefined;
