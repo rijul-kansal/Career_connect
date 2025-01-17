@@ -58,7 +58,8 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // getting db url
-const DB_URL = process.env.MONGO_DB_URL.replace('<password>', 'kansalrijul123');
+const url = "mongodb+srv://kansalrijul:<password>@cluster0.qoqfi.mongodb.net/CareerConnect?retryWrites=true&w=majority&appName=Cluster0"
+const DB_URL = url.replace('<password>', 'kansalrijul123');
 
 // trying to connect to db
 mongoose
